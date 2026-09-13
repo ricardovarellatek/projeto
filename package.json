@@ -1,0 +1,15 @@
+{
+  "name": "devlinks-perf-tooling",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Ferramentas de auditoria e melhoria automática de performance (Lighthouse) para o projeto DevLinks.",
+  "scripts": {
+    "perf:serve": "serve -l 5050 .",
+    "perf:audit": "bash scripts/perf-audit.sh manual",
+    "perf:loop": "bash scripts/perf-loop.sh"
+  },
+  "devDependencies": {
+    "lighthouse": "^12.2.0",
+    "serve": "^14.2.3"
+  }
+}

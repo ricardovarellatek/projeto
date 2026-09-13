@@ -43,6 +43,40 @@ O DevLinks é um agregador de links para usar como cartão de visitas online.
 
 Você pode visualizar o layout do projeto através [DESSE LINK](https://www.figma.com/community/file/1187422022288947321). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
+## ⚡ Loop automático de performance (Lighthouse)
+
+Este repositório tem uma infraestrutura para medir e melhorar a performance
+automaticamente, usando o Lighthouse e o Claude Code em loop (a "técnica
+Ralph Wiggum": repetir a mesma tarefa, verificando o progresso a cada
+rodada, em vez de tentar acertar tudo de uma vez).
+
+Pré-requisitos: Node.js 18+ e um Chrome/Chromium instalado (se o Lighthouse
+não achar automaticamente, defina `CHROME_PATH` apontando para o binário) e
+o [Claude Code CLI](https://claude.com/claude-code) autenticado.
+
+```bash
+npm install        # instala lighthouse e serve como devDependencies
+
+npm run perf:audit # roda uma auditoria única e salva o relatório em perf-reports/
+npm run perf:loop  # roda o loop: audita -> se não bater a meta, chama o
+                    # Claude Code com as oportunidades encontradas -> commita
+                    # -> audita de novo, até atingir o threshold ou o limite
+                    # de iterações
+```
+
+Variáveis de ambiente úteis para o `perf:loop`:
+
+- `PERF_THRESHOLD` — score mínimo de performance para parar (padrão: 90)
+- `PERF_MAX_ITERATIONS` — máximo de rodadas (padrão: 5)
+- `CLAUDE_FLAGS` — flags extras pro `claude`, ex.:
+  `CLAUDE_FLAGS="--permission-mode acceptEdits" npm run perf:loop` para não
+  precisar aprovar cada edição manualmente
+
+Cada rodada que resulta em mudança gera um commit separado (`perf loop:
+iteração N`), então dá pra acompanhar ou reverter iteração por iteração com
+`git log` / `git revert`. As instruções que guiam o agente em cada rodada
+ficam em `PROMPT.md` — vale revisar/ajustar antes de rodar.
+
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT.
