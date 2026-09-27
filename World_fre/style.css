@@ -1,0 +1,153 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --text-color: #1f2933;
+  --muted-color: #52606d;
+  --bg-color: #ffffff;
+  --surface-color: #f5f7fa;
+  --primary-color: #2563eb;
+  --primary-color-hover: #1d4ed8;
+  --stroke-color: #e4e7eb;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text-color);
+  background: var(--bg-color);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* header */
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg-color);
+  border-bottom: 1px solid var(--stroke-color);
+}
+
+#header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+nav a {
+  font-weight: 500;
+  color: var(--muted-color);
+  transition: color 0.2s;
+}
+
+nav a:hover {
+  color: var(--primary-color);
+}
+
+/* sections */
+section {
+  padding: 64px 0;
+}
+
+section:nth-of-type(even) {
+  background: var(--surface-color);
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+section p {
+  color: var(--muted-color);
+}
+
+/* hero */
+.hero {
+  text-align: center;
+  padding: 96px 0;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 32px;
+  background: var(--primary-color);
+  color: #ffffff;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.button:hover {
+  background: var(--primary-color-hover);
+}
+
+/* footer */
+footer {
+  padding: 24px 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted-color);
+  border-top: 1px solid var(--stroke-color);
+}
+
+/* media queries */
+@media (max-width: 600px) {
+  #header .container {
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    height: auto;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  .hero {
+    padding: 64px 0;
+  }
+}
